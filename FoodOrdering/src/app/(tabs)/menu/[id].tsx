@@ -1,7 +1,8 @@
 import { useLocalSearchParams, Stack } from "expo-router";
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable, ScrollView} from 'react-native';
 import React, {useState} from 'react';
 
+import Button from '@/Components/Button';
 import products from '@/assets/data/products';
 
 
@@ -19,8 +20,13 @@ const ProductDetailsScreen = () => {
         return <Text>Product not found</Text>
     }
 
+    const addToCart = () => {
+
+    }
+
     return(
-        <View style ={styles.container}>
+        
+        <ScrollView style ={styles.container}>
             <Stack.Screen options ={{title: 'Details'}}/>
             <Image source={{uri: product.image || '@/assets/images/icon.png'}} style={styles.image}/>
             <Text>Select size</Text>
@@ -34,7 +40,8 @@ const ProductDetailsScreen = () => {
             </View>
 
             <Text style={styles.price}>Price: ${product.price}</Text>
-        </View>
+            <Button onPress={addToCart} text="Add to cart"/>
+        </ScrollView>
     );
 }
 
@@ -53,6 +60,7 @@ image: {
 price: {
     fontSize:18,
     fontWeight:'bold',
+    marginTop:'auto',
 
 },
 sizes:{
